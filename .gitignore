@@ -5,6 +5,7 @@ assets/
 auto-save-list/
 backup/
 bookmarks
+custom.el
 eaf/
 el-get/
 ellama-sessions/

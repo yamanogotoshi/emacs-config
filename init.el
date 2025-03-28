@@ -118,9 +118,6 @@
   :config
   (setq calendar-holidays (append calendar-holidays japanese-holidays)))
 
-;(leaf which-key
-;  :ensure t  
-;  :global-minor-mode t)
 
 (leaf magit :ensure t)
 
@@ -367,7 +364,7 @@ Only insert if the file is an image (png, jpg, jpeg, gif, or svg)."
 (use-package corfu
   :custom ((corfu-auto t)
            (corfu-auto-delay 0)
-           (corfu-auto-prefix 1)
+           (corfu-auto-prefix 3)
            (corfu-cycle t)
            (corfu-on-exact-match nil)
            (tab-always-indent 'complete))
@@ -495,115 +492,12 @@ Only insert if the file is an image (png, jpg, jpeg, gif, or svg)."
 (display-time-mode t)
 (global-display-line-numbers-mode 1)
 
-(provide 'init)
-
-(use-package org-hyperscheduler
-  :straight
-  ( :repo "dmitrym0/org-hyperscheduler"
-    :host github
-    :type git
-    :files ("*")))
-
-;;(require 'org-install)
-(require 'org-capture)
-
-
-;(use-package eaf
-;  :load-path "~/.emacs.d/site-lisp/emacs-application-framework"
-;  :custom
-;  ; See https://github.com/emacs-eaf/emacs-application-framework/wiki/Customization
-;  (eaf-browser-continue-where-left-off t)
-;  (eaf-browser-enable-adblocker t)
-;  (browse-url-browser-function 'eaf-open-browser)
-;  :config
-;  (defalias 'browse-web #'eaf-open-browser)
-;  (eaf-bind-key scroll_up "C-n" eaf-pdf-viewer-keybinding)
-;  (eaf-bind-key scroll_down "C-p" eaf-pdf-viewer-keybinding)
-;  (eaf-bind-key take_photo "p" eaf-camera-keybinding)
-;  (eaf-bind-key nil "M-q" eaf-browser-keybinding)) ;; unbind, see more in the Wiki
-
-;; eaf
-;(require 'eaf)
-;(require 'eaf-2048)
-;(require 'eaf-image-viewer)
-;(require 'eaf-pdf-viewer)
-;(require 'eaf-markdown-previewer)
-;(require 'eaf-org-previewer)
-;(require 'eaf-terminal)
-;(require 'eaf-pyqterminal)
-;(require 'eaf-browser)
-;(require 'eaf-mindmap)
-;(require 'eaf-file-manager)
-;(require 'eaf-jupyter)
-;(require 'eaf-map)
-;(require 'eaf-system-monitor)
-;(require 'eaf-markmap)
-
 (add-to-list 'exec-path "~/.pyenv/shims")
 
-; なぜか以下を実行してもexec-pathが更新されなかった
-;(leaf exec-path-from-shell
-;  :ensure t
-;  :custom
-;  (when (memq window-system '(mac ns x))
-;    (exec-path-from-shell-initialize)))
+(setq custom-file "~/.emacs.d/custom.el")
+(load custom-file)
+
+(provide 'init)
 
 
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(ansi-color-faces-vector
-   [default default default italic underline success warning error])
- '(ansi-color-names-vector
-   ["black" "red3" "ForestGreen" "yellow3" "blue" "magenta3"
-    "DeepSkyBlue" "gray50"])
- '(delete-selection-mode nil)
- '(diary-list-entries-hook '(diary-include-other-diary-files diary-sort-entries))
- '(org-babel-load-languages '((emacs-lisp . t) (dot . t) (shell . t)))
- '(org-block
-   ((t (:background "#FFFFE0" :foreground "#000088" :extend t))))
- '(org-block-begin-line
-   ((t (:background "#E0E0E0" :foreground "#000000" :italic t :extend t))))
- '(org-block-end-line
-   ((t (:background "#E0E0E0" :foreground "#000000" :italic t :extend t))))
- '(org-enforce-todo-checkbox-dependencies t)
- '(org-enforce-todo-dependencies t)
- '(org-export-backends '(ascii beamer html icalendar latex odt))
- '(org-log-into-drawer "LOGBOOK")
- '(org-log-reschedule 'time)
- '(org-modules
-   '(ol-bbdb ol-bibtex ol-docview ol-eww ol-gnus org-habit ol-info ol-irc
-	     ol-mhe ol-rmail ol-w3m))
- '(org-publish-project-alist
-   '(("web" :base-directory "~/web/" :publishing-directory
-      "~/public_html" :publishing-function org-html-publish-to-html
-      :section-numbers nil :with-toc nil)))
- '(org-refile-allow-creating-parent-nodes 'confirm)
- '(org-refile-targets '((org-agenda-files :maxlevel . 2)))
- '(org-refile-use-outline-path 'file)
- '(org-track-ordered-property-with-tag t)
- '(org-use-property-inheritance t)
- '(package-selected-packages
-   '(org-hyperscheduler log4e quelpa-use-package dmacro easy-hugo
-			blackout el-get hydra leaf-keywords leaf))
- '(quote (org-attach-use-inheritance t))
- '(revita-project-file-alist
-   '(("book" . "~/work/2025/book/book.org")
-     ("aider" . "~/work/2025/aider/aider.org")
-     ("leetcode" . "~/work/2025/leetcode/leetcode.org")
-     ("emacs" . "~/work/2025/emacs/emacs.org")
-     ("revita" . "~/work/2025/revita/revita.org")))
- '(warning-suppress-log-types '((comp)))
- '(warning-suppress-types '((comp))))
 
-
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(org-block ((t (:background "#FFFFE0" :foreground "#000088" :extend t))))
- '(org-block-begin-line ((t (:background "#E0E0E0" :foreground "#000000" :italic t :extend t))))
- '(org-block-end-line ((t (:background "#E0E0E0" :foreground "#000000" :italic t :extend t)))))
