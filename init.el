@@ -514,7 +514,8 @@ Only insert if the file is an image (png, jpg, jpeg, gif, or svg)."
 (add-to-list 'exec-path "~/.pyenv/shims")
 
 (setq custom-file "~/.emacs.d/custom.el")
-(load custom-file)
+(when (file-exists-p custom-file)
+  (load custom-file))
 
 (provide 'init)
 
