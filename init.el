@@ -482,7 +482,6 @@ Only insert if the file is an image (png, jpg, jpeg, gif, or svg)."
   :ensure t
   :bind (("C-c a" . aidermacs-transient-menu))
   :config
-  (setenv "OPENROUTER_API_KEY" "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")
   :custom
   ; See the Configuration section below
   (aidermacs-use-architect-mode t)
