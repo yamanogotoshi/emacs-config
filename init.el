@@ -138,7 +138,6 @@
        (plantuml   . t)
        (org        . t)
        (python     . t)
-       ;;(ipython    . t)       
        (dot        . t)
        (latex      . t)
        (jupyter    . t)))    
@@ -178,7 +177,27 @@
     :hook
     ((org-mode . org-modern-mode)
      (org-agenda-finalize . org-modern-agenda)))
-  (setq org-fontify-quote-and-verse-blocks t)    
+  (setq org-fontify-quote-and-verse-blocks t)
+
+  ;; org-block のフェイス設定
+  (set-face-attribute 'org-block nil
+                      :background "#FFFFE0"
+                      :foreground "#000088"
+                      :extend t)
+
+  ;; org-block-begin-line のフェイス設定
+  (set-face-attribute 'org-block-begin-line nil
+                      :background "#E0E0E0"
+                      :foreground "#000000"
+                      :italic t
+                      :extend t)
+
+  ;; org-block-end-line のフェイス設定
+  (set-face-attribute 'org-block-end-line nil
+                      :background "#E0E0E0"
+                      :foreground "#000000"
+                      :italic t
+                      :extend t)
   )
 
 ;; setting for taskchute
