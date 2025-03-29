@@ -1,6 +1,7 @@
 %backup%~
 .aider.chat.history.md
 .lsp-session-v1
+assets
 auto-save-list/
 backup/
 bookmarks
