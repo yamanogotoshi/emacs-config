@@ -1,7 +1,6 @@
 %backup%~
 .aider.chat.history.md
 .lsp-session-v1
-assets/
 auto-save-list/
 backup/
 bookmarks
@@ -20,7 +19,6 @@ secrets.el
 session*
 site-lisp/
 straight/
-templates/
 tramp
 transient/
 tree-sitter/
