@@ -101,6 +101,10 @@
   )
 
 
+(leaf vterm :ensure t)
+;; sudo apt install cmake libtool libtool-bin
+;; C-c C-tでコピーモードを切り替えられる
+
 (leaf files
   :doc "file input and output commands for Emacs"
   :tag "builtin"
@@ -198,6 +202,25 @@
                       :foreground "#000000"
                       :italic t
                       :extend t)
+  )
+
+(leaf org-roam
+  :ensure t
+  :init
+  ;; Acknowledge V2 migration warnings, set before loading org-roam
+  (setq org-roam-v2-ack t)
+  :config
+  ;; Set the directory where Org Roam files are stored
+  (setq org-roam-directory (file-truename "~/org/roam/"))
+  (setq org-roam-node-display-template (concat "${title:*} " (propertize "${tags:15}" 'face 'org-tag)))
+  ;; Enable automatic database synchronization
+  (org-roam-db-autosync-mode)
+
+  ;; Define keybindings globally
+  (define-key global-map (kbd "C-c n f") #'org-roam-node-find)
+  (define-key global-map (kbd "C-c n i") #'org-roam-node-insert)
+  (define-key global-map (kbd "C-c n d") #'org-roam-dailies-capture-today)
+  ;; Add more keybindings as needed
   )
 
 ;; setting for taskchute
@@ -496,8 +519,10 @@ Only insert if the file is an image (png, jpg, jpeg, gif, or svg)."
 ;; aidermacs
 (use-package aidermacs
   :ensure t
-  :bind (("C-c a" . aidermacs-transient-menu))
+  :bind
+  ("C-c a" . aidermacs-transient-menu)
   :config
+  (setq aidermacs-backend 'vterm)
   :custom
   ; See the Configuration section below
   (aidermacs-use-architect-mode t)
