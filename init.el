@@ -70,6 +70,8 @@
     (global-set-key (kbd "C-o") 'toggle-input-method)
     (define-key mozc-mode-map (kbd "C-o") 'toggle-input-method)))
 
+;; sudo apt-get install cmigemo
+;; 以下の設定はubuntu用
 (leaf migemo
   :ensure t
   :require t
@@ -213,6 +215,14 @@
   ;; Set the directory where Org Roam files are stored
   (setq org-roam-directory (file-truename "~/org/roam/"))
   (setq org-roam-node-display-template (concat "${title:*} " (propertize "${tags:15}" 'face 'org-tag)))
+
+  ;; Ensure the roam directory exists before enabling autosync
+  (let ((roam-dir (expand-file-name org-roam-directory)))
+    (unless (file-directory-p roam-dir)
+      ;; Create the directory if it doesn't exist
+      (make-directory roam-dir t)
+      (message "Created Org Roam directory: %s" roam-dir)))
+
   ;; Enable automatic database synchronization
   (org-roam-db-autosync-mode)
 
@@ -341,6 +351,7 @@ Only insert if the file is an image (png, jpg, jpeg, gif, or svg)."
 
 ;; Tree-sitter
 (use-package treesit-auto
+  :ensure t
   :custom
   (treesit-auto-install 'prompt)
   :config
@@ -416,8 +427,8 @@ Only insert if the file is an image (png, jpg, jpeg, gif, or svg)."
          ("RET" . nil)
          ("<return>" . nil))
   :init
-  (global-corfu-mode +1)
   :config
+  (global-corfu-mode +1)
   (setq max-specpdl-size 13000)  ; デフォルトは 1600
   (setq max-lisp-eval-depth 10000)  ; デフォルトは 800
   )
@@ -458,7 +469,8 @@ Only insert if the file is an image (png, jpg, jpeg, gif, or svg)."
 
 ;; Optional: Add tempel-collection.
 ;; The package is young and doesn't have comprehensive coverage.
-(use-package tempel-collection)
+(use-package tempel-collection
+  :ensure t)
 
 
 (leaf *complement
@@ -517,6 +529,8 @@ Only insert if the file is an image (png, jpg, jpeg, gif, or svg)."
     ))
 
 ;; aidermacs
+; $ pip install aider-install
+; $ aider-install 
 (use-package aidermacs
   :ensure t
   :bind
