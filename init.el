@@ -153,7 +153,8 @@
     (setq org-src-fontify-natively t)
     )
   (setq org-image-actual-width nil)
-  (leaf ox-gfm :ensure t)
+  (leaf ox-gfm :ensure t
+    :config (require 'ox-gfm))
   (leaf org-attach-screenshot
     :ensure t
     :custom
@@ -536,7 +537,7 @@ Only insert if the file is an image (png, jpg, jpeg, gif, or svg)."
   :bind
   ("C-c a" . aidermacs-transient-menu)
   :config
-  (setq aidermacs-backend 'vterm)
+  (setq aidermacs-backend 'comint)
   :custom
   ; See the Configuration section below
   (aidermacs-use-architect-mode t)
