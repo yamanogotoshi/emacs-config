@@ -164,13 +164,10 @@
     :config
     (setq org-directory "~/org")
     (setq org-daily-tasks-file (format "%s/tasks.org" org-directory))
-    (setq org-someday-tasks-file (format "%s/someday.org" org-directory))
     (global-set-key (kbd "\C-cc") 'org-capture)
     :custom
     (org-capture-templates .
-    '(("d" "daily TODO" entry (file org-daily-tasks-file) "%[~/.emacs.d/assets/org-templates/routine.org]" :prepend t)      
-      ("s" "someday TODO" entry (file org-someday-tasks-file) "%[~/.emacs.d/assets/org-templates/someday-todo.org]" :prepend t)))    
-    )
+    '(("d" "daily TODO" entry (file org-daily-tasks-file) "%[~/.emacs.d/assets/org-templates/routine.org]" :prepend t))))
   (leaf org-agenda
     :config
     (global-set-key (kbd "\C-ca") 'org-agenda)
