@@ -544,6 +544,9 @@ Only insert if the file is an image (png, jpg, jpeg, gif, or svg)."
   (aidermacs-default-model "openrouter/google/gemini-2.5-pro-exp-03-25:free"))
 
 
+;; xwidget
+(setq xwidget-webkit-cookie-file (expand-file-name "webkit-cookies.txt" user-emacs-directory))
+
 (setq display-time-interval 60)
 (setq display-time-string-forms
   '((format "%s:%s" 24-hours minutes)))
