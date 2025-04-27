@@ -152,9 +152,13 @@
     (setq org-confirm-babel-evaluate nil)
     (setq org-src-fontify-natively t)
     )
-  (setq org-image-actual-width nil)
-  (leaf ox-gfm :ensure t
-    :config (require 'ox-gfm))
+  (setq org-image-actual-width nil)  
+  (leaf ox-gfm
+    :ensure t
+    :after org
+    :config
+    (require 'ox-gfm nil t)
+    (add-to-list 'org-export-backends 'gfm))
   (leaf org-attach-screenshot
     :ensure t
     :custom
@@ -538,7 +542,7 @@ Only insert if the file is an image (png, jpg, jpeg, gif, or svg)."
   :custom
   ; See the Configuration section below
   (aidermacs-use-architect-mode t)
-  (aidermacs-default-model "openrouter/google/gemini-2.5-pro-exp-03-25:free"))
+  (aidermacs-default-model "openrouter/google/gemini-2.5-pro-exp-03-25"))
 
 
 ;; xwidget

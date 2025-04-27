@@ -12,6 +12,7 @@ ellama-sessions/
 eln-cache/
 elpa/
 elpy/
+games/
 init-old.el
 org-roam.db
 quelpa/
