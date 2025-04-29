@@ -171,22 +171,9 @@
     (global-set-key (kbd "\C-cc") 'org-capture)
     :custom
     (org-capture-templates .
-    '(("d" "daily TODO" entry (file org-daily-tasks-file) "%[~/.emacs.d/assets/org-templates/routine.org]" :prepend t))))
-  (leaf org-agenda
-    :config
-    (global-set-key (kbd "\C-ca") 'org-agenda)
-    (setq org-agenda-files '("/prj/trade/journal/" "~/diary/"
-			     "~/work/2024/emacs-python/"
-			     "~/org/")))
-  (leaf org-modern
-    :ensure t
-    :custom
-    (org-modern-progress . '("○" "◔" "◑" "◕" "✅"))
-    :hook
-    ((org-mode . org-modern-mode)
-     (org-agenda-finalize . org-modern-agenda)))
+    '(("d" "daily TODO" entry (file org-daily-tasks-file) "%[~/.emacs.d/assets/org-templates/routine.org]" :prepend t))))    
+  (setq org-use-speed-commands t)
   (setq org-fontify-quote-and-verse-blocks t)
-
   ;; org-block のフェイス設定
   (set-face-attribute 'org-block nil
                       :background "#FFFFE0"
@@ -542,7 +529,8 @@ Only insert if the file is an image (png, jpg, jpeg, gif, or svg)."
   :custom
   ; See the Configuration section below
   (aidermacs-use-architect-mode t)
-  (aidermacs-default-model "openrouter/google/gemini-2.5-pro-exp-03-25"))
+  ; (aidermacs-default-model "openrouter/google/gemini-2.5-pro-exp-03-25")
+  (aidermacs-default-model "gemini-exp"))
 
 
 ;; xwidget
