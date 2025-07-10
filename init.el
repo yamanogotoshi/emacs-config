@@ -124,8 +124,19 @@
   :config
   (setq calendar-holidays (append calendar-holidays japanese-holidays)))
 
-
 (leaf magit :ensure t)
+
+;; window移動
+;(leaf ace-window
+;  :ensure t
+;  :bind (("C-x o" . ace-window)))
+; ace-windowも面白いけど、defaultで入っている方向keyで移動できるwindmoveの方が便利か
+(leaf windmove
+  :setq (windmove-wrap-around . t)
+  :bind (("C-<up>"    . windmove-up)
+         ("C-<down>"  . windmove-down)
+         ("C-<left>"  . windmove-left)
+         ("C-<right>" . windmove-right)))
 
 (leaf *org
   :config
