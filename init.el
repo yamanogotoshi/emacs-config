@@ -206,6 +206,27 @@
                       :extend t)
   )
 
+(with-eval-after-load 'ox-latex
+  (add-to-list 'org-latex-classes
+               '("bxjsarticle"
+                 "\\documentclass[uplatex,a4paper]{bxjsarticle}
+[NO-DEFAULT-PACKAGES]
+[PACKAGES]
+[EXTRA]"
+                 ("\\section{%s}" . "\\section*{%s}")
+                 ("\\subsection{%s}" . "\\subsection*{%s}")
+                 ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
+                 ("\\paragraph{%s}" . "\\paragraph*{%s}")
+                 ("\\subparagraph{%s}" . "\\subparagraph*{%s}"))))
+
+(setq org-latex-compiler "uplatex")
+
+(setq org-latex-pdf-process
+      '("uplatex -interaction nonstopmode -output-directory %o %f"
+        "uplatex -interaction nonstopmode -output-directory %o %f"
+        "dvipdfmx %b.dvi"))
+
+
 (leaf org-roam
   :ensure t
   :init
@@ -232,6 +253,13 @@
   (define-key global-map (kbd "C-c n d") #'org-roam-dailies-capture-today)
   ;; Add more keybindings as needed
   )
+
+(use-package pdf-tools
+  :ensure t
+  :hook (pdf-view-mode . (lambda () (display-line-numbers-mode -1)))
+  :config
+  ;; Emacs起動時にサーバープロセスを開始する
+  (pdf-tools-install))
 
 ;; setting for taskchute
 
@@ -555,6 +583,11 @@ Only insert if the file is an image (png, jpg, jpeg, gif, or svg)."
 (global-display-line-numbers-mode 1)
 
 (add-to-list 'exec-path "~/.pyenv/shims")
+
+(use-package exec-path-from-shell
+  :ensure t
+  :config
+  (exec-path-from-shell-initialize))
 
 (setq custom-file "~/.emacs.d/custom.el")
 (when (file-exists-p custom-file)
